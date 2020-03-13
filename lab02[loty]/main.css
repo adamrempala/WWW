@@ -1,0 +1,167 @@
+body
+{
+    text-align: center;
+    line-height:1;
+}
+
+header
+{
+    background-color: #AAAAAA;
+    font-weight: 200;
+    font-size: 40px;
+    color: #ff0000;
+    margin-bottom: 15px;
+    display:block;
+}
+
+#logo
+{
+    width:350px;
+    display:block;
+}
+
+p
+{
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 75%;
+    padding: 1em;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+#pierwszy
+{
+    margin-top: 10px;
+    background-color: black;
+    color: yellow;
+}
+
+#drugi
+{
+    margin-bottom: 10px;
+    background-color: yellow;
+}
+
+#trzeci
+{
+    font-weight: 700;
+    color: red;
+    position: absolute;
+    top:1px;
+    width: 120px;
+    margin-left: 300px;
+    z-index: 1;
+}
+
+.pojemnik
+{
+    position:relative;
+}
+
+table
+{
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    text-align:left;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+.info
+{
+    margin-top: 0;
+}
+
+th
+{
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    font-weight: 200
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
+td
+{
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    font-weight: 500;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
+#linkdopodstrony
+{
+    z-index: 2;
+}
+
+.airport
+{
+    display: inline-block;
+    width:500px;
+    height: auto;
+    margin: 21px;
+    background-color: #e6ce19;
+    position: relative;
+}
+
+.photo
+{
+    display: block;
+    margin-top: 25px;
+    width:100%;
+    height: 400px;
+    
+}
+
+.forecast
+{
+    margin-left: 40px;
+    width:400px;
+    font-weight: 700;
+    font-size: 22;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.forecastval
+{
+    display: inline-block;
+    margin-left: 40px;
+    width:400px;
+    color: #ff0000;
+    font-size: 22;
+    margin-top: 0px;
+}
+
+footer
+{
+    background-color: aliceblue;
+    color: green;
+    font-family: sans-serif;
+    font-size: 30px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    display:block;
+}
