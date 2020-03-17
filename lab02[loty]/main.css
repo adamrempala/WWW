@@ -4,7 +4,7 @@ body
     line-height:1;
 }
 
-header
+h1
 {
     background-color: #AAAAAA;
     font-weight: 200;
@@ -153,6 +153,18 @@ td
     font-size: 22;
     margin-top: 0px;
 }
+
+header, nav {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
 
 footer
 {
