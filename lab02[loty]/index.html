@@ -6,38 +6,37 @@
     <title>Loty</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
 <body>
     <header>
         <h1>
             Lista lotów
         </h1>
-        <nav>
-            <ul>
-                <li><a href="./glowna.html">Główna</a></li>
-                <li>
-                    <a href="./index.html">Loty</a></li>
-                    <ul>
-                        <li><a href="./subsites/lot1.html">Lot nr 1</a></li>
-                        <li><a href="./subsites/lot1.html">Lot nr 2</a></li>
-                    </ul>
-                </li>
-                <li><a href="./bilety.html">Bilety</a></li>
-                <li><a href="./olinii.html">O linii</a></li>
-                <li><a href="./aktualnosci.html">Aktualności</a></li>
-                <li><a href="./promocje.html">Promocje</a></li>
-                <li><a href="./zamowienia.html">Zamówienia</a></li>
-                <li><a href="./kontakt.html">Kontakt</a></li>
-            </ul>
-            
-        </nav>
+        <img id ='logo' src="images/external-content.duckduckgo.com.png">  
     </header>
 
     <main>
-        
-        <img id ='logo' src="images/external-content.duckduckgo.com.png">        
-
+        <article class='pojemnik'>
+            <nav>
+                <ul>
+                    <li><a href="./glowna.html">Główna</a></li>
+                    <li>
+                        <a href="./index.html">Loty</a></li>
+                        <ul>
+                            <li><a href="./subsites/lot1.html">Lot nr 1</a></li>
+                            <li><a href="./subsites/lot1.html">Lot nr 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./bilety.html">Bilety</a></li>
+                    <li><a href="./olinii.html">O linii</a></li>
+                    <li><a href="./aktualnosci.html">Aktualności</a></li>
+                    <li><a href="./promocje.html">Promocje</a></li>
+                    <li><a href="./zamowienia.html">Zamówienia</a></li>
+                    <li><a href="./kontakt.html">Kontakt</a></li>
+                </ul>
+                
+            </nav>
+        </article>
         <article class='pojemnik'>            
             <h2>Loty</h2>
             <table>
@@ -51,14 +50,14 @@
             <h2>Opóźnione loty</h2>            
             <table>
                 <tr><th>nr lotu</th><th>skąd</th><th>dokąd</th><th>data</th><th>oczekiwana godzina</th><th>opóźnienie</th></tr>
-                <tr><td>1</td><td>WMI</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
-                <tr><td>2</td><td>WAW</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
-                <tr><td>3</td><td>KRA</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
-                <tr><td>4</td><td>WAW</td><td>KRA</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
-                <tr><td>5</td><td>WMI</td><td>WAW</td><td>16/02/2020</td><td>06:40</td><td>15 min.</td></tr>
-                <tr><td>6</td><td>KRA</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
-                <tr><td>7</td><td>WMI</td><td>RZE</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
-                <tr><td>8</td><td>RZE</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr id="zolw"><td>1</td><td>WMI</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr id="odwołany"><td>2</td><td>WAW</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr id="zolw"><td>3</td><td>KRA</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr id="zolw"><td>4</td><td>WAW</td><td>KRA</td><td>30/07/2019</td><td>16:15</td><td>15 min.</td></tr>
+                <tr id="slimak"><td>5</td><td>WMI</td><td>WAW</td><td>16/02/2020</td><td>06:40</td><td>75 min.</td></tr>
+                <tr id="odwołany"><td>6</td><td>KRA</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr id="slimak"><td>7</td><td>WMI</td><td>RZE</td><td>30/02/2020</td><td>06:40</td><td>65 min.</td></tr>
+                <tr id="odwołany"><td>8</td><td>RZE</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
             </table>
         </article>
 

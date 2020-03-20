@@ -14,6 +14,15 @@ h1
     display:block;
 }
 
+a:visited {
+
+    color: blue;
+
+}
+
+a:link {
+    text-decoration: none;
+}
 #logo
 {
     width:350px;
@@ -59,9 +68,35 @@ p
     z-index: 1;
 }
 
+#odwołany
+{
+    background-color: #f58585;
+}
+
+#zolw
+{
+    background-color: rgb(255, 251, 0)
+}
+
+#slimak
+{
+    background-color: #ff5e00;
+}
+
+article {
+    float: left;
+}
+
 .pojemnik
 {
     position:relative;
+    display: inline;
+    margin: 20px;
+}
+
+ul{
+    text-align: left;
+    list-style: none;
 }
 
 table
