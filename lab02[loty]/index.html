@@ -9,28 +9,61 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <h1>
-        Lista lotów
-    </h1>
-    <img id ='logo' src="images/external-content.duckduckgo.com.png">
-    <p id='pierwszy'>
-        Tabela przedstawiająca listę znanych lotów
-    </p>
-    
-    <p id='drugi'>
-        na podstawie danych z pamięci
-    </p>
-    
+    <header>
+        <h1>
+            Lista lotów
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="./glowna.html">Główna</a></li>
+                <li>
+                    <a href="./index.html">Loty</a></li>
+                    <ul>
+                        <li><a href="./subsites/lot1.html">Lot nr 1</a></li>
+                        <li><a href="./subsites/lot1.html">Lot nr 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="./bilety.html">Bilety</a></li>
+                <li><a href="./olinii.html">O linii</a></li>
+                <li><a href="./aktualnosci.html">Aktualności</a></li>
+                <li><a href="./promocje.html">Promocje</a></li>
+                <li><a href="./zamowienia.html">Zamówienia</a></li>
+                <li><a href="./kontakt.html">Kontakt</a></li>
+            </ul>
+            
+        </nav>
+    </header>
 
-    <div class='pojemnik'>
-        <p id='trzeci'>Ale superlot!</p>
+    <main>
         
-        <table>
-            <tr><th>nr lotu</th><th>skąd</th><th>dokąd</th><th>data</th><th>godzina</th></tr>
-            <tr><td id="linkdopodstrony"><a href="subsites/lot1.html" >1</a></td><td>KAT</td><td>ATH</td><td>29/06/2019</td><td>06:40</td></tr>
-            <tr><td>2</td><td>ATH</td><td>KAT</td><td>04/07/2019</td><td>16:15</td></tr>
-        </table>
-    </div>
+        <img id ='logo' src="images/external-content.duckduckgo.com.png">        
+
+        <article class='pojemnik'>            
+            <h2>Loty</h2>
+            <table>
+                <tr><th>nr lotu</th><th>skąd</th><th>dokąd</th><th>data</th><th>godzina</th></tr>
+                <tr><td id="linkdopodstrony"><a href="subsites/lot1.html" >1</a></td><td>KAT</td><td>ATH</td><td>29/06/2019</td><td>06:40</td></tr>
+                <tr><td>2</td><td>ATH</td><td>KAT</td><td>04/07/2019</td><td>16:15</td></tr>
+            </table>
+        </article>
+
+        <article class='pojemnik'>
+            <h2>Opóźnione loty</h2>            
+            <table>
+                <tr><th>nr lotu</th><th>skąd</th><th>dokąd</th><th>data</th><th>oczekiwana godzina</th><th>opóźnienie</th></tr>
+                <tr><td>1</td><td>WMI</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr><td>2</td><td>WAW</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr><td>3</td><td>KRA</td><td>WAW</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr><td>4</td><td>WAW</td><td>KRA</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr><td>5</td><td>WMI</td><td>WAW</td><td>16/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr><td>6</td><td>KRA</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+                <tr><td>7</td><td>WMI</td><td>RZE</td><td>30/02/2020</td><td>06:40</td><td>15 min.</td></tr>
+                <tr><td>8</td><td>RZE</td><td>WMI</td><td>30/07/2019</td><td>16:15</td><td>odwołany</td></tr>
+            </table>
+        </article>
+
+    </main>
+    
     
     <footer>
         Copyright by Adam 2020
