@@ -88,10 +88,6 @@ p
     background-color: #ff5e00;
 }
 
-article {
-    
-}
-
 .pojemnik
 {
     position:relative;
@@ -216,4 +212,8 @@ footer
     margin-left: 25%;
     margin-right: 25%;
     display:block;
+}
+
+nav{
+    text-transform: uppercase;
 }
