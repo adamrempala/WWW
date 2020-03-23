@@ -1,11 +1,9 @@
-body
-{
+body {
     text-align: center;
     line-height:1;
 }
 
-h1
-{
+h1 {
     background-color: #AAAAAA;
     font-weight: 200;
     font-size: 40px;
@@ -14,11 +12,12 @@ h1
     display:block;
 }
 
-main{
+main {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+
 a:visited {
 
     color: blue;
@@ -28,14 +27,8 @@ a:visited {
 a:link {
     text-decoration: none;
 }
-#logo
-{
-    width:350px;
-    display:block;
-}
 
-p
-{
+p {
     margin-left: 12.5%;
     margin-right: 12.5%;
     margin-top: 0;
@@ -49,59 +42,12 @@ p
     background:transparent;
 }
 
-#pierwszy
-{
-    margin-top: 10px;
-    background-color: black;
-    color: yellow;
-}
-
-#drugi
-{
-    margin-bottom: 10px;
-    background-color: yellow;
-}
-
-#trzeci
-{
-    font-weight: 700;
-    color: red;
-    position: absolute;
-    top:1px;
-    width: 120px;
-    margin-left: 300px;
-    z-index: 1;
-}
-
-#odwołany
-{
-    background-color: #f58585;
-}
-
-#zolw
-{
-    background-color: rgb(255, 251, 0)
-}
-
-#slimak
-{
-    background-color: #ff5e00;
-}
-
-.pojemnik
-{
-    position:relative;
-    display: inline;
-    margin: 20px;
-}
-
-ul{
+ul {
     text-align: left;
     list-style: none;
 }
 
-table
-{
+table {
     margin:0;
     padding:0;
     border: 1px solid black;
@@ -113,13 +59,7 @@ table
     background:transparent;
 }
 
-.info
-{
-    margin-top: 0;
-}
-
-th
-{
+th {
     margin:0;
     padding:0;
     border: 1px solid black;
@@ -132,8 +72,7 @@ th
 
 }
 
-td
-{
+td {
     margin:0;
     padding:0;
     border: 1px solid black;
@@ -144,50 +83,6 @@ td
     vertical-align:baseline;
     background:transparent;
 
-}
-
-#linkdopodstrony
-{
-    z-index: 2;
-}
-
-.airport
-{
-    display: inline-block;
-    width:500px;
-    height: auto;
-    margin: 21px;
-    background-color: #e6ce19;
-    position: relative;
-}
-
-.photo
-{
-    display: block;
-    margin-top: 25px;
-    width:100%;
-    height: 400px;
-    
-}
-
-.forecast
-{
-    margin-left: 40px;
-    width:400px;
-    font-weight: 700;
-    font-size: 22;
-    margin-bottom: 5px;
-    display: inline-block;
-}
-
-.forecastval
-{
-    display: inline-block;
-    margin-left: 40px;
-    width:400px;
-    color: #ff0000;
-    font-size: 22;
-    margin-top: 0px;
 }
 
 header, nav {
@@ -202,8 +97,7 @@ header, nav {
 }
 
 
-footer
-{
+footer {
     background-color: aliceblue;
     color: green;
     font-family: sans-serif;
@@ -214,6 +108,110 @@ footer
     display:block;
 }
 
-nav{
+nav {
     text-transform: uppercase;
+}
+
+.info {
+    margin-top: 0;
+}
+
+.pojemnik {
+    position:relative;
+    display: inline;
+    margin: 20px;
+}
+
+.airport {
+    display: inline-block;
+    width:500px;
+    height: auto;
+    margin: 21px;
+    background-color: #e6ce19;
+    position: relative;
+}
+
+.photo {
+    display: block;
+    margin-top: 25px;
+    width:100%;
+    height: 400px;
+    
+}
+
+.forecast {
+    margin-left: 40px;
+    width:400px;
+    font-weight: 700;
+    font-size: 22;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.forecastval {
+    display: inline-block;
+    margin-left: 40px;
+    width:400px;
+    color: #ff0000;
+    font-size: 22;
+    margin-top: 0px;
+}
+
+#logo {
+    width:350px;
+    display:block;
+}
+
+#odwołany {
+    background-color: #f58585;
+}
+
+#zolw {
+    background-color: rgb(255, 251, 0)
+}
+
+#slimak {
+    background-color: #ff5e00;
+}
+
+#linkdopodstrony {
+    z-index: 2;
+}
+
+@media screen and (min-width: 1030px) {
+    main {
+        max-width: 1030px;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    #menu {
+        align-self: flex-start;
+    }
+
+    #logo {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        display:block;
+        flex-direction: unset;
+    }
+    article {
+        display: block;
+    }
+    .hidemobile, .photo, .forecast, .forecastval {
+        display: none;
+        
+    }
+
+    .airport, .pojemnik, footer
+    {
+        width: auto;
+        display: block;
+        margin: auto;
+    }
+
 }
