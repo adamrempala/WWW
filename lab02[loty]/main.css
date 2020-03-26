@@ -12,10 +12,9 @@ h1 {
     display:block;
 }
 
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+form {
+    text-align: left;
+    margin-left: 20px;
 }
 
 a:visited {
@@ -29,15 +28,13 @@ a:link {
 }
 
 p {
-    margin-left: 12.5%;
-    margin-right: 12.5%;
     margin-top: 0;
     margin-bottom: 0;
     width: 75%;
-    padding: 1em;
     border:0;
     outline:0;
     font-size:100%;
+    padding: 2px;
     vertical-align:baseline;
     background:transparent;
 }
@@ -45,6 +42,15 @@ p {
 ul {
     text-align: left;
     list-style: none;
+}
+
+.airport li {
+    background-color: #ff5e00;
+    width: 75%
+}
+
+.airport li:nth-child(odd) {
+    background-color: #f58585;
 }
 
 table {
@@ -108,6 +114,10 @@ footer {
     display:block;
 }
 
+ol {
+    margin-left: 15%;
+}
+
 nav {
     text-transform: uppercase;
 }
@@ -116,9 +126,28 @@ nav {
     margin-top: 0;
 }
 
+span {
+    visibility: hidden;
+    background-color: #f8f1b3;
+    height:30px;
+    width: 60px;
+    border: 12px;
+    padding: 20px;
+    position: absolute;
+    margin-left: 60px;
+}
+
+.passenger:hover span{
+    
+    visibility: visible;
+}
+
+.pasname {
+    text-align:left
+}
+
 .pojemnik {
     position:relative;
-    display: inline;
     margin: 20px;
 }
 
@@ -159,18 +188,18 @@ nav {
 
 #logo {
     width:350px;
-    display:block;
+    align-self:center;
 }
 
-#odwołany {
+.odwołany {
     background-color: #f58585;
 }
 
-#zolw {
+.zolw {
     background-color: rgb(255, 251, 0)
 }
 
-#slimak {
+.slimak {
     background-color: #ff5e00;
 }
 
@@ -179,25 +208,39 @@ nav {
 }
 
 @media screen and (min-width: 1030px) {
-    main {
-        max-width: 1030px;
+    body {
+        max-width: 1360px;
     }
+    main {
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+    }
+    .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
 }
 
 @media screen and (max-width: 1030px) {
-    #menu {
-        align-self: flex-start;
+    body {
+        max-width: 1000px;
+    }
+    main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
     #logo {
         display: none;
     }
 }
-
 @media screen and (max-width: 500px) {
     main {
         display:block;
-        flex-direction: unset;
     }
     article {
         display: block;
