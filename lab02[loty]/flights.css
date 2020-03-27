@@ -102,17 +102,6 @@ header, nav {
 
 }
 
-header {
-    grid-area: header;
-}
-
-#logo {
-    grid-area: logo;
-}
-
-footer {
-    grid-area: footer;
-}
 
 footer {
     background-color: aliceblue;
@@ -221,41 +210,33 @@ span {
 @media screen and (min-width: 1030px) {
     body {
         max-width: 1360px;
-        display: grid;
-        grid-template-columns: 200px 3fr 1fr;
-        grid-column-gap: 15px;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "header header header"
-            "logo logo logo"
-            "menu kolumna2 kolumna3"
-            "footer footer footer";
     }
-
-    #logo {
-        margin-left: 35%;
+    main {
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
     }
-    table {
-        width: 100%;
+    .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
     
 }
 
-@media screen and (max-width: 1030px) and (min-width:501px) {
-    #logo {
-        display: none;
+@media screen and (max-width: 1030px) {
+    body {
+        max-width: 1000px;
+    }
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    body {
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-        grid-column-gap: 15px;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "header header"
-            "menu menu"
-            "kolumna2 kolumna3"
-            "footer footer";
+    #logo {
+        display: none;
     }
 
     #menu {
@@ -265,7 +246,7 @@ span {
 
 }
 @media screen and (max-width: 500px) {
-    body {
+    main {
         display:block;
     }
     article {
