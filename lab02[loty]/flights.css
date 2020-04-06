@@ -252,6 +252,9 @@ span {
     article {
         display: block;
     }
+    div {
+        display: block;
+    }
     .hidemobile, .photo, .forecast, .forecastval {
         display: none;
         

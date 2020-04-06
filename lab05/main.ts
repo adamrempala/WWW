@@ -40,11 +40,19 @@ function sprawdzDaneLiniiLotniczej(dane: any): dane is ILiniaLotnicza {
     if (!("lotniska" in dane))
         return false;
 
-    if (typeof(dane.lotniska) !== 'object')
-        return false;
+    
 
     for (const i in dane.piloci) {
         if (typeof(i) !== "string")
+            return false;
+    }
+
+    if (typeof(dane.lotniska) !== 'object')
+        return false;
+    for (const i in dane.lotniska) {
+        if (typeof(i) !== "string")
+            return false;
+        if (typeof(object(i)) !== "[string, number[]]")
             return false;
     }
 
