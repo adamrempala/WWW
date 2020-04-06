@@ -131,6 +131,7 @@ ol {
 
 nav {
     text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .info {
@@ -197,6 +198,14 @@ span {
     margin-top: 0px;
 }
 
+.p2 {
+    grid-area: kolumna2;
+}
+
+.p3 {
+    grid-area: kolumna3;
+}
+
 #logo {
     width:350px;
     align-self:center;
@@ -220,13 +229,12 @@ span {
 
 #reservation{
     background-color: yellow;
-    line-height: 1000%;
-    height: 300px;
-    width: 80%;
+    line-height: 3000%;
+    height: 500px;
+    width: 100%;
     position: fixed;
     opacity: 80%;
     z-index: 10;
-    left: 10%;
 }
 #menu {
     grid-area: menu;
@@ -288,7 +296,7 @@ span {
     #body {
         display:block;
     }
-    article {
+    div {
         display: block;
     }
     .hidemobile, .photo, .forecast, .forecastval {

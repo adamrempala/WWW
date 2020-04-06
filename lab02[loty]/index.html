@@ -15,35 +15,34 @@
             </h1> 
         </header>
         <img class='hidetablet' id ='logo' src="images/external-content.duckduckgo.com.png" alt="Logo linii lotniczej">
-            <article class="pojemnik" id="menu">
-                <nav>
-                    <ul>
-                        <li><a href="./glowna.html">Główna</a></li>
-                        <li><a href="./index.html">Loty</a>
-                            <ul>
-                                <li><a href="./subsites/lot1.html">Lot nr 1</a></li>
-                                <li><a href="./subsites/lot1.html">Lot nr 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./bilety.html">Bilety</a></li>
-                        <li><a href="./olinii.html">O linii</a></li>
-                        <li><a href="./aktualnosci.html">Aktualności</a></li>
-                        <li><a href="./promocje.html">Promocje</a></li>
-                        <li><a href="./zamowienia.html">Zamówienia</a></li>
-                        <li><a href="./kontakt.html">Kontakt</a></li>
-                    </ul>
-                </nav>
-            </article>
-            <article class='pojemnik' grid-area="kolumna2">           
+            <nav class="pojemnik" id="menu">
+                <ul>
+                    <li><a href="./glowna.html">Główna</a></li>
+                    <li><a href="./index.html">Loty</a>
+                        <ul>
+                            <li><a href="./subsites/lot1.html">Lot nr 1</a></li>
+                            <li><a href="./subsites/lot1.html">Lot nr 2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./bilety.html">Bilety</a></li>
+                    <li><a href="./olinii.html">O linii</a></li>
+                    <li><a href="./aktualnosci.html">Aktualności</a></li>
+                    <li><a href="./promocje.html">Promocje</a></li>
+                    <li><a href="./zamowienia.html">Zamówienia</a></li>
+                    <li><a href="./kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+            
+            <div class='pojemnik' id = "p2">           
                 <h2>Loty</h2>
                 <table>
                     <tr><th>nr</th><th>skąd</th><th>dokąd</th><th>data</th><th>godz.</th></tr>
                     <tr><td id="linkdopodstrony"><a href="subsites/lot1.html" >1</a></td><td>KAT</td><td>ATH</td><td>29/06/2019</td><td>06:40</td></tr>
                     <tr><td>2</td><td>ATH</td><td>KAT</td><td>04/07/2019</td><td>16:15</td></tr>
                 </table>
-            </article>
+            </div>
     
-            <article class='pojemnik' grid-area="kolumna3">
+            <div class='pojemnik' id = "p3">
                 <h2 class="hidemobile">Opóźnione loty</h2>            
                 <table class="hidemobile">
                     <tr><th>nr</th><th>skąd</th><th>dokąd</th><th>data</th><th>oczek.</th><th>opóźnienie</th></tr>
@@ -80,7 +79,7 @@
                     <label for="date">Data</label><input type=date id="date"><br>
                     <button type="reset">Clear</button><button type="submit">Send</button>
                 </form>
-            </article>
+            </div>
         
         
         <footer>
