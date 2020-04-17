@@ -35,12 +35,11 @@ let jsonString: string = `{
 type Pilot = string;
 
 function sprawdzDaneLiniiLotniczej(dane: any): dane is ILiniaLotnicza {
-    if (!("piloci" in dane))
+    if (("piloci" in dane) === undefined)
         return false;
-    if (!("lotniska" in dane))
+    if (("lotniska" in dane) === undefined)
         return false;
 
-    
 
     for (const i in dane.piloci) {
         if (typeof(i) !== "string")
@@ -49,10 +48,13 @@ function sprawdzDaneLiniiLotniczej(dane: any): dane is ILiniaLotnicza {
 
     if (typeof(dane.lotniska) !== 'object')
         return false;
-    for (const i in dane.lotniska) {
+    for (const i of dane.lotniska) {
         if (typeof(i) !== "string")
             return false;
-        if (typeof(object(i)) !== "[string, number[]]")
+        const x = Object(i);
+        if (x[0] !== "string")
+            return false;
+        if (x[1] !== "number[]")
             return false;
     }
 
