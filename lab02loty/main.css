@@ -1,0 +1,314 @@
+body {
+    text-align: center;
+    line-height:1;
+}
+
+h1 {
+    background-color: #AAAAAA;
+    font-weight: 200;
+    font-size: 40px;
+    color: #ff0000;
+    margin-bottom: 15px;
+    display:block;
+}
+
+form {
+    display:block;
+    text-align: left;
+    margin-left: 20px;
+}
+
+a:visited {
+
+    color: blue;
+
+}
+
+a:link {
+    text-decoration: none;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    padding: 2px;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+ul {
+    text-align: left;
+    list-style: none;
+}
+
+.airport li {
+    background-color: #ff5e00;
+    width: 75%
+}
+
+.airport li:nth-child(odd) {
+    background-color: #f58585;
+}
+
+table {
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    text-align:left;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+th {
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    font-weight: 200;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
+td {
+    margin:0;
+    padding:0;
+    border: 1px solid black;
+    border-collapse: separate;
+    outline:0;
+    font-weight: 500;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
+header, nav {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+
+}
+
+header {
+    grid-area: header;
+}
+
+#logo {
+    grid-area: logo;
+}
+
+footer {
+    grid-area: footer;
+}
+
+footer {
+    background-color: aliceblue;
+    color: green;
+    font-family: sans-serif;
+    font-size: 30px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    display:block;
+}
+
+ol {
+    margin-left: 15%;
+}
+
+nav {
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.info {
+    margin-top: 0;
+}
+
+span {
+    visibility: hidden;
+    background-color: #f8f1b3;
+    height:30px;
+    width: 60px;
+    border: 12px;
+    padding: 20px;
+    position: absolute;
+    margin-left: 60px;
+}
+
+.passenger:hover span{
+    
+    visibility: visible;
+}
+
+.pasname {
+    text-align:left
+}
+
+.pojemnik {
+    position:relative;
+    margin: 20px;
+}
+
+.airport {
+    display: inline-block;
+    width:500px;
+    height: auto;
+    margin: 21px;
+    background-color: #e6ce19;
+    position: relative;
+}
+
+.photo {
+    display: block;
+    margin-top: 25px;
+    width:100%;
+    height: 400px;
+    
+}
+
+.forecast {
+    margin-left: 40px;
+    width:400px;
+    font-weight: 700;
+    font-size: 22;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.forecastval {
+    display: inline-block;
+    margin-left: 40px;
+    width:400px;
+    color: #ff0000;
+    font-size: 22;
+    margin-top: 0px;
+}
+
+.p2 {
+    grid-area: kolumna2;
+}
+
+.p3 {
+    grid-area: kolumna3;
+}
+
+#logo {
+    width:350px;
+    align-self:center;
+}
+
+.odwołany {
+    background-color: #f58585;
+}
+
+.zolw {
+    background-color: rgb(255, 251, 0)
+}
+
+.slimak {
+    background-color: #ff5e00;
+}
+
+#linkdopodstrony {
+    z-index: 2;
+}
+
+#reservation{
+    background-color: yellow;
+    height: 500px;
+    width: 100%;
+    position: fixed;
+    opacity: 80%;
+    z-index: 10;
+    display: none;
+}
+#menu {
+    grid-area: menu;
+}
+
+
+@media screen and (min-width: 1030px) {
+    body{
+        max-width: 1360px;
+    }
+    #body {
+        display: grid;
+        grid-template-columns: 200px 3fr 1fr;
+        grid-column-gap: 15px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "header header header"
+            "logo logo logo"
+            "menu kolumna2 kolumna3"
+            "footer footer footer";
+    }
+
+    #logo {
+        margin-left: 35%;
+    }
+    table {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 1030px) and (min-width:501px) {
+    #logo {
+        display: none;
+    }
+
+    #body {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-column-gap: 15px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "header header"
+            "menu menu"
+            "kolumna2 kolumna3"
+            "footer footer";
+    }
+
+    #menu {
+        width: 100%;
+        left: 37%
+    }
+    table {
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 500px) {
+    #body {
+        display:block;
+    }
+    div {
+        display: block;
+    }
+    .hidemobile, .photo, .forecast, .forecastval {
+        display: none;
+        
+    }
+
+    .airport, .pojemnik, footer
+    {
+        width: auto;
+        display: block;
+        margin: auto;
+    }
+
+}
