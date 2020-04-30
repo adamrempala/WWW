@@ -4,6 +4,29 @@ import { expect } from "chai";
 
 import "mocha";
 
+function dateToString (date) {
+    let year = date.getYear()+1900;
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let addmonth, addday;
+
+    if (month < 10) {
+        addmonth = '0';
+    } else {
+        addmonth = '';
+    }
+
+    if (day < 10) {
+        addday = '0';
+    } else {
+        addday = '';
+    }
+
+    return `${year}-${addmonth}${month}-${addday}${day}`
+}
+
+let yesterday = new Date(+new Date() - 86400000);
+let tomorrow = new Date(+new Date() + 86400000);
 
 describe("fibonacci", () => {
 
@@ -40,6 +63,10 @@ import { driver } from 'mocha-webdriver';
 
 
 describe('testDrugi', function () {
+    
+    beforeEach(async function() {
+        this.timeout(30000);
+    })
 
     afterEach(async function() {
         this.timeout(20000);
@@ -59,15 +86,21 @@ describe('testDrugi', function () {
 
         expect(await driver.find('button[type=submit]').getAttribute('disabled')).to.equal('true');
     })
+    it('submit should be disabled if sname is clear', async function() {
+        await driver.find('input[id=fname]').sendKeys('Jan');
+        await driver.find('input[id=sname]').clear();
+
+        expect(await driver.find('button[type=submit]').getAttribute('disabled')).to.equal('true');
+    })
     it('submit should be disabled if date is past', async function() {
         await driver.find('input[id=fname]').sendKeys('Jan');
         await driver.find('input[id=sname]').sendKeys('Woreczko');
-        await driver.find('input[id=date]').sendKeys('2020-04-23');
+        await driver.find('input[id=date]').sendKeys(dateToString(yesterday));
 
         expect(await driver.find('button[type=submit]').getAttribute('disabled')).to.equal('true');
     })
     it('now popup should be displayed and links should be covered', async function() {
-        await driver.find('input[id=date]').sendKeys('2020-04-25');
+        await driver.find('input[id=date]').sendKeys(dateToString(tomorrow));
 
         expect(await driver.find('button[type=submit]').getAttribute('disabled')).to.not.equal('true');
 
