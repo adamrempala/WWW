@@ -229,7 +229,8 @@ span {
 
 #reservation{
     background-color: yellow;
-    height: 500px;
+    margin: 0;
+    height: 200%;
     width: 100%;
     position: fixed;
     opacity: 80%;

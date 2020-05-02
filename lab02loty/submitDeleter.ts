@@ -4,25 +4,41 @@ przycisk.setAttribute('disabled', 'disabled');
 
 let data = document.querySelector("input[type=date]");
 (<HTMLInputElement>data).value = '1980-01-01';
-let pola = document.querySelectorAll("input[type=text]");
+let pola = document.querySelectorAll("input");
 
-data.addEventListener('change', funkcja);
 pola.forEach(element => {
-    element.addEventListener('change', funkcja);
+    element.addEventListener('input', checkProperData);
 });
 
 
-function funkcja (){
+function sameSpaces(text) {
+    let i = 0;
+
+    while (i < text.length) {
+        if (text[i] !== ' ') {
+            return false;
+        }
+
+        i++;
+    }
+
+    return true;
+}
+
+function checkProperData(){
     let proper = new Boolean();
     proper = true;
+
     pola.forEach(element => {
-        if((<HTMLInputElement>element).value.length < 1) {
+        if((<HTMLInputElement>element).value.length < 1 || sameSpaces((<HTMLInputElement>element).value)) {
             proper = false;
         }
-            
-    })
-    let wrDate = new Date((<HTMLInputElement>data).value)
-    if (wrDate < new Date()){
+    });
+
+    let wrDate = new Date((<HTMLInputElement>data).value).getTime()
+    let now = new Date().getTime();
+
+    if (wrDate < now - now % 86400000){
         proper = false;
     }
         

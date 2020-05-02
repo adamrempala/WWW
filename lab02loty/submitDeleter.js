@@ -2,21 +2,31 @@ var przycisk = document.querySelector("button[type=submit]");
 przycisk.setAttribute('disabled', 'disabled');
 var data = document.querySelector("input[type=date]");
 data.value = '1980-01-01';
-var pola = document.querySelectorAll("input[type=text]");
-data.addEventListener('change', funkcja);
+var pola = document.querySelectorAll("input");
 pola.forEach(function (element) {
-    element.addEventListener('change', funkcja);
+    element.addEventListener('input', checkProperData);
 });
-function funkcja() {
+function sameSpaces(text) {
+    var i = 0;
+    while (i < text.length) {
+        if (text[i] !== ' ') {
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+function checkProperData() {
     var proper = new Boolean();
     proper = true;
     pola.forEach(function (element) {
-        if (element.value.length < 1) {
+        if (element.value.length < 1 || sameSpaces(element.value)) {
             proper = false;
         }
     });
-    var wrDate = new Date(data.value);
-    if (wrDate < new Date()) {
+    var wrDate = new Date(data.value).getTime();
+    var now = new Date().getTime();
+    if (wrDate < now - now % 86400000) {
         proper = false;
     }
     if (proper === false) {
