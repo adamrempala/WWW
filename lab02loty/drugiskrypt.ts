@@ -1,4 +1,4 @@
-export function fibonacci(e) {
+function fibonacci(e) {
     if (e < 2)
         return e;
     else
