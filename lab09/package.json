@@ -1,0 +1,35 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --target es2015 *.ts",
+    "watch": "npm-watch"
+  },
+  "author": "adam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mocha": "^7.1.2",
+    "npm-watch": "^0.6.0",
+    "pug": "^2.0.4",
+    "sqlite3": "^4.2.0",
+    "typescript": "^3.8.3"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "."
+      ],
+      "extensions": "ts"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.5",
+    "@types/sqlite3": "^3.1.6",
+    "ts-node": "^8.10.1"
+  }
+}

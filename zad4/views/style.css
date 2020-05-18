@@ -1,0 +1,25 @@
+body {
+    background-color: #f1ee22;
+    margin: 20px;
+}
+
+img {
+    max-width: 300px;
+}
+
+h1 {
+    text-align:center
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+th, td
+{
+ vertical-align:middle;
+}
+
+#welcome {
+    margin-left: 30%;
+}

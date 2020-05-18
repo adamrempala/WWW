@@ -1,0 +1,34 @@
+html
+
+    head
+
+        title= title
+
+    style
+        include reset.css
+        include style.css
+
+    body
+
+        h1= message
+        img(src="https://a.wattpad.com/cover/55307968-288-k507588.jpg" id="welcome")
+
+        h2="Najdroższe dzisiaj"
+
+        table
+            tbody
+                tr
+                    th Nazwa
+                    th Treść
+                    th Cena
+
+                each meme in memes
+
+                    tr
+                        td
+                            a(href="meme/" + meme.getId()) #{meme.getName()}
+
+                        td  
+                            img(src=meme.getUrl())
+                        td  
+                            p() #{meme.getPrice()}
