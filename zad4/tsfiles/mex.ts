@@ -2,7 +2,7 @@ export const mostExpensive = [
 
     {'id': 10,
 
-    'name': 'Gold',
+    'name': 'Mem gamerski 1',
 
     'price': 1000,
 
@@ -10,7 +10,7 @@ export const mostExpensive = [
 
     {'id': 9,
 
-    'name': 'Platinum',
+    'name': 'Mem gamerski 2',
 
     'price': 2100,
 
@@ -18,7 +18,7 @@ export const mostExpensive = [
 
     {'id': 8,
 
-    'name': 'Elite',
+    'name': 'Mem gamerski 3',
 
     'price': 1200,
 

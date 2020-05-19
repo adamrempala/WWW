@@ -14,16 +14,6 @@ html
 
         img(src=meme.getUrl())
 
-        //- ul
-
-        //-     each el in meme.getHistory()
-
-        //-         li
-
-        //-            a(href="meme/" + meme.id) #{meme.name}
-
-        //-            img(src=meme.url)
-
         form(action=`../meme/${meme.getId()}`, method='POST')
             p
             | Zmień cenę: 
@@ -33,6 +23,17 @@ html
 
         table
             tbody
+                tr
+                    th Data
+                    th
+                    th Cena
                 each el in meme.getHistory()
                     tr
-                        p=el
+                        td
+                            p=el.date.toString().slice(4,24)
+                        td
+                            p="->"
+                        td
+                            p=el.price + " zł "
+                        
+                        
