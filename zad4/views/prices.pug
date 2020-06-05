@@ -15,6 +15,7 @@ html
         img(src=meme.getUrl())
 
         form(action=`../meme/${meme.getId()}`, method='POST')
+            input(type='hidden', name='_csrf', value=csrfToken)
             p
             | Zmień cenę: 
             input(type='text', name='price', value='')
