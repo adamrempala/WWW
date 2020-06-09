@@ -9,15 +9,20 @@ html
         include style.css
 
     body
+        p() Witaj, #{nazwa}
+
+        form(action=`/logout`, method='POST')
+            button(type='submit') Wyloguj
 
         h1= message
         img(src="https://a.wattpad.com/cover/55307968-288-k507588.jpg" id="welcome")
+
+        
 
         h2="Najdroższe dzisiaj"
 
         table
             tbody
-
                 tr
                     th Nazwa
                     th Treść
@@ -27,9 +32,9 @@ html
 
                     tr
                         td
-                            a(href="meme/" + meme.getId()) #{meme.getName()}
+                            a(href="meme/" + meme.id) #{meme.name}
 
                         td  
-                            img(src=meme.getUrl())
+                            img(src=meme.url)
                         td  
-                            p() #{meme.getPrice()}
+                            p() #{meme.prices[0].price}

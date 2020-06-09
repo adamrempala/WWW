@@ -1,0 +1,21 @@
+html
+    head
+        title= title
+        style
+            include style.css
+    body
+        h1="Meme - " + meme.name
+
+        table
+            tr
+                th="Cena"
+            each price in meme.prices.slice().reverse()
+                tr
+                    td #{price[0]} by !{price[1]}
+        
+        form(method="POST")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(for="price")="Nowa cena"
+            input(type="text" name="nick")
+            input(type="number" name="price")
+            button(type="submit")="Ustaw"

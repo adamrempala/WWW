@@ -1,25 +1,25 @@
 import { MemeList } from './memelist'
 import csurf from 'csurf'
 import cookieParser from 'cookie-parser'
-// import session from 'express-session'
-// const niewiem = require('connect-sqlite3');
+import session from 'express-session'
+const niewiem = require('connect-sqlite3');
 
 export const lista = new MemeList();
 
 import express from 'express';
 
-//const sqliteStore = niewiem(session);
+const sqliteStore = niewiem(session);
 const app = express();
 const secretlySecretValue = 'Mary had a little lamb';
 app.use(cookieParser(secretlySecretValue))
 
 const csrfProtection = csurf({cookie:true})
 
-// app.use(session({secret: secretlySecretValue,
-// cookie: { maxAge: 15*60*1000},
-// resave: false,
-// saveUninitialized: true/*,
-// ?8store: new sqliteStore() */}))
+app.use(session({secret: secretlySecretValue,
+cookie: { maxAge: 15*60*1000},
+resave: false,
+saveUninitialized: true,
+store: new sqliteStore() }))
 
 
 app.use(express.urlencoded({
@@ -27,16 +27,13 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-
-// app.use((req, res, next) => {
-//   if (!req.session?.views) {
-//     req.session.views = {};
-//   }
-//   req.session.views[req.path] = (req.session.views[req.path] || 0) + 1;
-//   next();
-// });
-
-
+app.use((req, res, next) => {
+  if (!req.session?.views) {
+    req.session.views = {};
+  }
+  req.session.views[req.path] = (req.session.views[req.path] || 0) + 1;
+  next();
+});
 
 app.set('view engine', 'pug');
 

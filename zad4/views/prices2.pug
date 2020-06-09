@@ -1,0 +1,45 @@
+html
+
+    head
+
+        title= meme.name
+
+    style
+        include reset.css
+        include style.css
+
+    body
+        a(href="../..") Powrót do strony głównej
+        p() Witaj, #{nazwa}
+        form(action=`/logout`, method='POST')
+            button(type='submit') Wyloguj
+        h1= meme.name
+
+        img(src=meme.url)
+
+        form(action=`../meme/${meme.id}`, method='POST')
+            input(type='hidden', name='_csrf', value=csrfToken)
+            p
+            | Zmień cenę: 
+            input(type='text', name='price', value='')
+            
+            button(type='submit') Dodaj cenę
+
+        p() #{error}
+
+        table
+            tbody
+                tr
+                    th Kto zmienił
+                    th
+                    th Cena
+                each el in meme.prices
+                    tr
+                        td
+                            p=el.username
+                        td
+                            p="->"
+                        td
+                            p=el.price
+                        
+                        

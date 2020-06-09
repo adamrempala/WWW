@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>A meme!</title>
+</head>
+
+<body>
+    <h1 id="name"></h1>
+    <table id="prices">
+        <tr>
+            <th>Cena</th>
+        </tr>
+    </table>
+    <form action="#" id="price_form">
+        <label for="price">Nowa cena</label>
+        <input name="price">
+        <button type="submit">Ustaw</button>
+    </form>
+
+    <script>
+        let memeId = undefined;
+        let csrfToken = undefined;
+
+        async function initialFetch() {
+            const maybeMemeId = /^\?id=(\d+)$/.exec(window.location.search);
+            if (!maybeMemeId) {
+                console.log('No meme to fetch, page does not work!');
+                return;
+            }
+            memeId = parseInt(maybeMemeId[1], 10);
+
+            const data = await fetch(`/meme/${memeId}`);
+            const meme = await data.json();
+            csrfToken = data.headers.get('CSRF-Header');
+            updatePrices(meme);
+            // Errors??? catch!
+        }
+
+        function updatePrices(meme) {
+            document.getElementById('name').textContent = meme.name;
+
+            let newPrices = '<tr><th>Cena</th></tr>';
+            for (const price of meme.prices.slice().reverse()) {
+                newPrices += `<tr><td>${price}</td></tr>`;
+            }
+            document.getElementById('prices').innerHTML = newPrices;
+        }
+
+        initialFetch();
+
+        document.getElementById('price_form').addEventListener('submit', async (ev) => {
+            ev.preventDefault();
+
+            const price = parseInt(document.querySelector('[name="price"]').value, 10);
+            console.log('Setting new price', price);
+
+            await fetch(`/meme/${memeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'CSRF-Token': csrfToken
+                },
+                body: JSON.stringify({price: price, abc: 'def'})
+            });
+            updatePrices(await fetch(`/meme/${memeId}`).then((data) => data.json()));
+        });
+    </script>
+</body>
+
+</html>

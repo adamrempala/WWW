@@ -1,0 +1,25 @@
+html
+
+    head
+
+        title= title
+
+    style
+        include reset.css
+        include style.css
+
+    body
+
+        h1= 'Musisz się zalogować'
+
+        p() #{error}
+
+        form(action=`/`, method='POST')
+            input(type='hidden', name='_csrf', value=csrfToken)
+            p
+            | Login: 
+            input(type='text', name='username', value='')
+            | Hasło: 
+            input(type='password', name='password', value='')
+            
+            button(type='submit') Zaloguj
