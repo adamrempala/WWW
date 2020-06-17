@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "createdb": "npx ts-node zakladacz"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
@@ -14,6 +15,7 @@
     "@types/sqlite3": "^3.1.6",
     "connect-sqlite3": "^0.9.11",
     "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
     "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -21,6 +23,7 @@
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
     "js-md5": "^0.7.3",
+    "js-sha3": "^0.8.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
     "sqlite3": "^4.2.0",

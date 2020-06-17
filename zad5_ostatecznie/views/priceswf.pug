@@ -10,20 +10,13 @@ html
 
     body
         a(href="../..") Powrót do strony głównej
-        p() Witaj, #{nazwa}
-        form(action=`${log}`, method='POST')
-            button(type='submit')='Wyloguj'
+        p() Witaj, nieznajomy
+        form(action=`/login`, method='POST')
+            input(type='hidden', name='_csrf', value=csrfToken)
+            button(type='submit')='Zaloguj'
         h1= meme.getName()
 
         img(src=meme.getUrl())
-
-        form(action=`../meme/${meme.getId()}`, method='POST')
-            input(type='hidden', name='_csrf', value=csrfToken)
-            p
-            | Zmień cenę: 
-            input(type='text', name='price', value='')
-            
-            button(type='submit') Dodaj cenę
 
         p() #{error}
 

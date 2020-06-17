@@ -1,58 +1,31 @@
 import csurf from 'csurf'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
+import MemeList from './memelist'
+import express from 'express';
+
 // tslint:disable-next-line: no-var-requires
 const csql3 = require('connect-sqlite3');
 // tslint:disable-next-line: no-var-requires
-const md5 = require('js-md5')
+const sha = require('js-sha3')
 
 import * as sqlite3 from 'sqlite3';
-import $ from 'jquery'
 
-const parsePrices = (word: string) => {
-    let colonCount = 0;
-    const prices = new Array();
-    let firstNumb = 0;
-    let numbCount = 0;
-    let firstUsr;
-    let usrCount = 0;
+const memes = new MemeList();
+// console.log(memes.getLista2())
 
+const isProperUsername = (username:string) => {
     // tslint:disable-next-line: prefer-for-of
-    for (let i = 0 ; i < word.length; i++) {
-        if (word[i] === ';') {
-            colonCount++;
-            if (colonCount % 2 === 0) {
-                prices.push({
-                    price: parseInt(word.substr(firstNumb, numbCount), 10),
-                    username: word.substr(firstUsr, usrCount/*firstUsr + usrCount - 2*/)
-                })
-                firstNumb = i + 1;
-            } else {
-                firstUsr = i + 1;
-                usrCount = 0;
-            }
-        } else {
-            if (colonCount % 2 === 0) {
-                numbCount++;
-            } else {
-                usrCount++;
-            }
+    for (let i = 0; i < username.length; i++) {
+        if ((username[i] < 'A' || username[i] > 'Z')
+            && (username[i] < 'a' || username[i] > 'z')
+            && (username[i] < '0' || username[i] > '9')
+            && (username[i] < '(' || username[i] > '.')) {
+            return false;
         }
     }
-
-    return prices.reverse();
+    return true;
 }
-
-const doMeme  = (id:number, name:string, prices:string, url:string) => {
-    return {
-        id,
-        name,
-        prices: parsePrices(prices),
-        url
-    }
-}
-
-import express from 'express';
 
 const sqliteStore = csql3(session);
 const app = express();
@@ -87,74 +60,48 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
+app.post('/login', csrfProtection, (req, res) => {
 
     if (!req.session.zalogowany?.username) {
-        res.render('zaloguj', {error: ''});
+        res.render('zaloguj', {error: '', csrfToken: req.csrfToken()});
     } else {
-        sqlite3.verbose();
-
-        const db = new sqlite3.Database('baza.db');
-
-        db.all('SELECT id, name, prices, url FROM memy', [], (err, rows) => {
-
-            if (err) throw(err);
-
-            let memy = new Array(0);
-
-            for(const {id, name, prices, url} of rows) {
-                memy.push(doMeme(id, name, prices, url))
-            }
-
-            memy.sort((a,b) => b.prices[0].price - a.prices[0].price)
-
-            memy = memy.splice(0,3);
-
-            db.close();
-
-            res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', memes: memy, count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username })
-
-        });
+        location.href = "/";
     }
 
 });
 
-app.get('/meme/:memeId', csrfProtection, (req, res) => {
+app.get('/', csrfProtection, (req, res) => {
+
+    const memy = memes.get3MostExpensive();
 
     if (!req.session.zalogowany?.username) {
-        res.render('zaloguj', {error: ''});
+        res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', csrfToken: req.csrfToken(), memes: memy, count:Object.keys(req.session.views).length, nazwa: "nieznajomy", log: "login" });
     } else {
-        sqlite3.verbose();
+        res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', csrfToken: req.csrfToken(), memes: memy, count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username, log: "logout" });
+    }
 
-        const db = new sqlite3.Database('baza.db');
-        let meme;
 
-        try {
-            db.all(`SELECT id, name, prices, url FROM memy WHERE id = ${req.params.memeId}`, [], (err, rows) => {
+});
 
-                if (err) throw(err);
-
-                if (rows.length === 0) {
-                    meme = null;
-                    db.close();
-                    res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
-                } else {
-                    meme = doMeme(rows[0].id, rows[0].name, rows[0].prices, rows[0].url);
-                    db.close();
-                    res.render('prices2', { meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length });
-                }
-
-            });
-        } catch {
-            res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username});
+app.get('/meme/:memeId', csrfProtection, (req, res) => {
+    if (isNaN(Number(req.params.memeId)) || req.params.memeId.length === 0) {
+        res.render('error', {message: 'Invalid argument', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username});
+    } else try {
+        const meme = memes.getMeme(req.params.memeId);
+        if (!req.session.zalogowany?.username) {
+            res.render('priceswf', { meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length });
+        } else {
+            res.render('prices2', { meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa:req.session.zalogowany.username });
         }
+    } catch {
+        res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username});
     }
 })
 
 app.post('/meme/:memeId', csrfProtection, (req, res) => {
 
     if (!req.session.zalogowany?.username) {
-        res.render('zaloguj', {error: ''});
+        res.render('zaloguj', {error: '', csrfToken: req.csrfToken()});
     } else {
         const price = req.body.price;
 
@@ -163,91 +110,69 @@ app.post('/meme/:memeId', csrfProtection, (req, res) => {
         sqlite3.verbose();
 
         const db = new sqlite3.Database('baza.db');
-        let meme;
 
-        db.run('BEGIN TRANSACTION')
-
-        try {
+        if (isNaN(Number(req.params.memeId))
+            || req.params.memeId.length === 0) {
+                res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
+        } else try {
             let error = "";
-
-            db.all(`SELECT id, name, prices, url FROM memy WHERE id = ${req.params.memeId}`, [], (err, rows) => {
-
-                if (err) throw(err);
-
-                if (!isNaN(price) && price.length > 0) {
-                    db.all(`UPDATE memy SET prices = \'${rows[0].prices}${price};${user};\' WHERE id = ${req.params.memeId}`, [], (err2, rows2) => {
-                        if (err2) db.run('ROLLBACK');
-                    });
-
-                    meme = doMeme(rows[0].id, rows[0].name, `${rows[0].prices}${price};${user};`, rows[0].url);
-                } else {
-                    error=`Written type should be number`
-                    meme = doMeme(rows[0].id, rows[0].name, `${rows[0].prices}`, rows[0].url);
-                }
-
-                db.run('COMMIT');
-
-                db.close();
-                res.render('prices2', {error, meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username })
-
-            });
+            if (!isNaN(price) && price.length > 0) {
+                memes.getMeme(req.params.memeId).changePriceProm(price, user).then(()=>{
+                    const meme = memes.getMeme(req.params.memeId);
+                    res.render('prices2', {error, meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username });
+                }).catch(()=>{throw new Error("error")});
+            } else {
+                error="Invalid input"
+                const meme = memes.getMeme(req.params.memeId);
+                res.render('prices2', {error, meme, csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username });
+            }
         } catch {
             res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
         }
     }
 })
 
-app.post('/', (req, res) => {
+app.post('/', csrfProtection, (req, res) => {
     // ... wyciągnij dane z formularza
     sqlite3.verbose();
 
-    const db = new sqlite3.Database('baza.db');
+    if (!isProperUsername(req.body.username)) {
+        res.render('zaloguj', {error: 'Invalid username', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
+    } else try {
 
-    try {
-      db.all(`SELECT user, name FROM hasla WHERE user LIKE '${req.body.username}'`, [], (err, rows) => {
+        const db = new sqlite3.Database('baza.db');
 
-          if (rows.length < 1) {
-              db.close();
-              res.render('zaloguj', {error: 'Invalid username'});
-          } else {
-              if (err) throw(err);
+        db.all(`SELECT name FROM hasla WHERE user = '${req.body.username}'`, [], (err, rows) => {
+            if (err) {
+                throw err;
+            } else if (rows.length !== 1) {
+                console.log(rows.length, req.body.username)
+                res.render('zaloguj', {error: 'No such username', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
+            } else if (rows[0].name !== sha.sha3_256(req.body.password)) {
+                res.render('zaloguj', {error: 'Passwords do not match', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
+            } else {
+                req.session.zalogowany = {username: req.body.username};
+                const memy = memes.get3MostExpensive();
+                res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', memes: memy, count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username, log: "logout" });
+            }
+        })
 
-              if (rows[0].name === md5(req.body.password)) {
-                  req.session.zalogowany = { username: req.body.username };
+        
 
-                  db.all('SELECT id, name, prices, url FROM memy', [], (err2, rows2) => {
+        // if (!req.session.zalogowany?.username) {
+        //     res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', memes: memy, count:Object.keys(req.session.views).length, nazwa: "nieznajomy", log: "login" });
+        // } else {
+        //     res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', memes: memy, count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username, log: "logout" });
+        // }
 
-                      if (err2) throw(err2);
-
-                      let memy = new Array(0);
-
-                      for(const {id, name, prices, url} of rows2) {
-                          memy.push(doMeme(id, name, prices, url))
-                      }
-
-                      memy.sort((a,b) => b.prices[0].price - a.prices[0].price)
-
-                      memy = memy.splice(0,3);
-
-                      db.close();
-
-                      res.render('index2', { title: 'Meme market', message: 'Witaj na giełdzie memów', memes: memy, count:Object.keys(req.session.views).length, nazwa: req.session.zalogowany.username })
-
-                  });
-              } else {
-                  db.close();
-                  res.render('zaloguj', {error: 'Invalid password'});
-              }
-          }
-      });
     } catch {
       res.render('error', {message: '404 Not Found', csrfToken: req.csrfToken(), count:Object.keys(req.session.views).length});
     }
   })
 
-app.post('/logout', (req, res) => {
+app.post('/logout', csrfProtection, (req, res) => {
     req.session.zalogowany = { username: req.body.username };
-    res.render('zaloguj', {error: 'Wylogowano pomyślnie'});
+    res.render('zaloguj', {error: 'Wylogowano pomyślnie', csrfToken: req.csrfToken()});
 });
 
 app.get('/*', csrfProtection, (req, res) => {
