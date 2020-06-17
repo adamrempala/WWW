@@ -75,48 +75,48 @@ sqlite3.verbose();
 
 
 let db = new sqlite3.Database('baza.db');
-db.all(`SELECT * FROM hasla /*WHERE user = 'user'*/`, [], (err, rows) => {
-    rows.forEach(elt=>{console.log(elt)})
-})
-db.close();
-// db.run(`DROP TABLE hasla`, ()=>{
-//     db.run(`DROP TABLE memy`,()=> {
-//         db.run(`CREATE TABLE hasla(user TEXT, name TEXT)`, ()=>{
-//             db.run(`INSERT INTO hasla VALUES ('admin', '${sha.sha3_256('admin')}')`, ()=>{
-//                 db.run(`INSERT INTO hasla VALUES ('user', '${sha.sha3_256('user')}')`, ()=>{
-//                     db.run(`CREATE TABLE memy(id INTEGER, name TEXT, prices TEXT, current NUMERIC, url TEXT)`, ()=>{
-//                         (new Promise((resolve,reject)=>{
-//                             let i = 0;
-//                             mostExpensive.forEach(element => {
-//                                 db.run(`INSERT INTO memy VALUES(${element.id}, '${element.name}', '${element.price};Cena początkowa;', ${element.price},'${element.url}')`, ()=>{
-//                                     i++;
-//                                     if (i === mostExpensive.length)
-//                                         resolve();
-//                                 })
-//                             })
-//                         })).then(()=>{db.close();}).catch(()=>{db.close(); throw new Error("error")})
-//                     });
-//                 });
-//             });
-//         })
-//     });
-// });
-// // db.close();
-// // db = new sqlite3.Database('baza.db');
+// db.all(`SELECT * FROM hasla /*WHERE user = 'user'*/`, [], (err, rows) => {
+//     rows.forEach(elt=>{console.log(elt)})
+// })
+// db.close();
+db.run(`DROP TABLE hasla`, ()=>{
+    db.run(`DROP TABLE memy`,()=> {
+        db.run(`CREATE TABLE hasla(user TEXT, name TEXT)`, ()=>{
+            db.run(`INSERT INTO hasla VALUES ('admin', '${sha.sha3_256('admin')}')`, ()=>{
+                db.run(`INSERT INTO hasla VALUES ('user', '${sha.sha3_256('user')}')`, ()=>{
+                    db.run(`CREATE TABLE memy(id INTEGER, name TEXT, prices TEXT, current NUMERIC, url TEXT)`, ()=>{
+                        (new Promise((resolve,reject)=>{
+                            let i = 0;
+                            mostExpensive.forEach(element => {
+                                db.run(`INSERT INTO memy VALUES(${element.id}, '${element.name}', '${element.price};Cena początkowa;', ${element.price},'${element.url}')`, ()=>{
+                                    i++;
+                                    if (i === mostExpensive.length)
+                                        resolve();
+                                })
+                            })
+                        })).then(()=>{db.close();}).catch(()=>{db.close(); throw new Error("error")})
+                    });
+                });
+            });
+        })
+    });
+});
+// db.close();
+// db = new sqlite3.Database('baza.db');
 
+// db.close();
+// db = new sqlite3.Database('baza.db');
+db.run(`CREATE TABLE hasla(user TEXT, name TEXT)`);
+// db.close();
+// db = new sqlite3.Database('baza.db');
+db.run(`INSERT INTO hasla VALUES ('admin', '${sha.sha3_256('admin')})'`);
 // // db.close();
 // // db = new sqlite3.Database('baza.db');
-// db.run(`CREATE TABLE hasla(user TEXT, name TEXT)`);
+db.run(`INSERT INTO hasla VALUES ('user', '${sha.sha3_256('user')})'`);
 // // db.close();
-// // db = new sqlite3.Database('baza.db');
-// db.run(`INSERT INTO hasla VALUES ('admin', '${sha.sha3_256('admin')})'`);
-// // // db.close();
-// // // db = new sqlite3.Database('baza.db');
-// db.run(`INSERT INTO hasla VALUES ('user', '${sha.sha3_256('user')})'`);
-// // // db.close();
-// // db = new sqlite3.Database('baza.db');
-// db.run(`CREATE TABLE memy(id INTEGER, name TEXT, prices TEXT, current NUMERIC, url TEXT)`);
-// // // db.close();
+// db = new sqlite3.Database('baza.db');
+db.run(`CREATE TABLE memy(id INTEGER, name TEXT, prices TEXT, current NUMERIC, url TEXT)`);
+// // db.close();
 
 
 // mostExpensive.forEach(element => {
@@ -126,4 +126,4 @@ db.close();
 //     // db.close();
 // })
 
-console.log(2)
+// console.log(2)
