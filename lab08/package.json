@@ -15,7 +15,7 @@
     "fs": "0.0.1-security",
     "mocha": "^7.1.2",
     "npm-watch": "^0.6.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sqlite3": "^4.2.0",
     "typescript": "^3.8.3"
   },
