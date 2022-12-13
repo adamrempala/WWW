@@ -11,6 +11,6 @@
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/csurf": "^1.9.36",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
